@@ -1,5 +1,4 @@
-from os import mkdir
-from os import listdir
+from os import mkdir, listdir
 from shutil import move
 
 # create 26 directories in the current dir, one for each letter of the alphabet
@@ -7,15 +6,9 @@ from shutil import move
 # by alpha
 
 # Create a directory for each letter of the alphabet
+[mkdir(chr(x)) for x in range(97,123) if chr(x) not in listdir(".")]
 
-currdir = listdir(".")
 
-for name in [chr(x) for x in range(97,123) if chr(x) not in currdir]:
-    mkdir(name)
+# Loop through files in original_files, Move it into the appropriate directory
+[move("./original_files/"+filename,"./"+filename[0]+"/.") for filename in listdir("./original_files")]
 
-original_files = listdir("./original_files")
-
-# Loop through files in original_files
-for filename in original_files:
-# Move it into the appropriate directory
-    move("./original_files/"+filename,"./"+filename[0]+"/.")
